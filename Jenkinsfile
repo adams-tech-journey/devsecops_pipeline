@@ -7,6 +7,7 @@ pipeline {
             steps {
                 sh '''
                 nginx --version
+                hadolint Dockerfile
                 '''
 
             }
