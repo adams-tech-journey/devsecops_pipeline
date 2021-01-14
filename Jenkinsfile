@@ -6,7 +6,7 @@ pipeline {
         stage('setup') {
             steps {
                 sh '''
-                docker pull nginx
+                nginx --version
                 '''
 
             }
