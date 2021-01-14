@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                sh'''
+                sh '''
                 docker --version
                 docker run -d -p 80:80 webserver-image:v1         
                 curl docker
@@ -12,4 +12,3 @@ pipeline {
         }
     }
 }
-
