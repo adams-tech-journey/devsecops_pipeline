@@ -6,7 +6,6 @@ pipeline {
         stage('setup') {
             steps {
                 sh '''
-                nginx --version
                 hadolint Dockerfile
                 '''
 
