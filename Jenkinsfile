@@ -1,13 +1,14 @@
 pipeline {
-    agent { dockerfile true }
+    agent {
+        docker { image 'nginx:latest' }
+    }
     stages {
-        stage('Setup') {
+        stage('setup') {
             steps {
-                sh'''
-                docker build -t webserver-image:v1 
-                docker run -d -p 80:80 
-                curl docker
+                sh '''
+                sudo docker pull nginx
                 '''
+
             }
         }
     }
