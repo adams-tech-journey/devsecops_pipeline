@@ -1,19 +1,17 @@
 pipeline {
-
-    stages {
     agent {
-        docker {
-            image 'hadolint/hadolint:latest-debian'
-            //image 'ghcr.io/hadolint/hadolint:latest-debian'
-        }
+        docker { image 'nginx:latest' }
     }
-    steps {
-        sh 'hadolint Dockerfile | tee -a hadolint_lint.txt'
-    }
-    post {
-        always {
-            archiveArtifacts 'hadolint_lint.txt'
+    stages {
+        stage('setup') {
+            steps {
+                sh '''
+                docker pull hadolint/hadolint:latest-debian
+                hadolint Dockerfile
+
+                '''
+
+            }
         }
     }
 }
-        
