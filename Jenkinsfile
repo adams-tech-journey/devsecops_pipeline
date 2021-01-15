@@ -6,11 +6,35 @@ pipeline {
         stage('setup') {
             steps {
                 sh '''
-                docker pull hadolint/hadolint:latest-debian
-                hadolint Dockerfile
-
+                ls
                 '''
+            }
+        }
+        stage('Front-end') {
+            agent {
+                docker { image 'n' }
+            }
+    }
+    }
+}
 
+pipeline {
+    agent none
+    stages {
+        stage('test1') {
+            agent {
+                docker { image 'ubuntu:latest' }
+            }
+            steps {
+                sh 'echo hello'
+            }
+        }
+        stage('test2') {
+            agent {
+                docker { image 'hadolint/hadolint:latest-debian' }
+            }
+            steps {
+                sh 'hadolint Dockerfile'
             }
         }
     }
