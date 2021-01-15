@@ -1,10 +1,5 @@
 pipeline {
     agent {
-        docker { image 'nginx:latest' }
-    }
-    stages {
-        stage ("lint dockerfile") {
-    agent {
         docker {
             image 'hadolint/hadolint:latest-debian'
             //image 'ghcr.io/hadolint/hadolint:latest-debian'
@@ -17,8 +12,6 @@ pipeline {
         always {
             archiveArtifacts 'hadolint_lint.txt'
         }
-    }
-}
     }
 }
         
