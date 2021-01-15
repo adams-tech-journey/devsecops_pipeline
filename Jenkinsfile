@@ -1,4 +1,6 @@
 pipeline {
+
+    stages {
     agent {
         docker {
             image 'hadolint/hadolint:latest-debian'
