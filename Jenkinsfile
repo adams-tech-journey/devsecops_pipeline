@@ -1,24 +1,4 @@
 pipeline {
-    agent {
-        docker { image 'nginx:latest' }
-    }
-    stages {
-        stage('setup') {
-            steps {
-                sh '''
-                ls
-                '''
-            }
-        }
-        stage('Front-end') {
-            agent {
-                docker { image 'n' }
-            }
-    }
-    }
-}
-
-pipeline {
     agent none
     stages {
         stage('test1') {
