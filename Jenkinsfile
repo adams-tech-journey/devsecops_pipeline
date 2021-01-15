@@ -15,6 +15,7 @@ pipeline {
             }
             steps {
                 sh 'hadolint Dockerfile | tee -a hadolint_lint.txt'
+                sh'cat hadolint_lint.txt'
             }
         }
     }
