@@ -2,9 +2,7 @@ pipeline {
     agent none
     stages {
         stage('test1') {
-            agent {
-                docker { image 'ubuntu:latest' }
-            }
+            agent { label 'master' }
             steps {
                 sh 'echo hello'
             }
