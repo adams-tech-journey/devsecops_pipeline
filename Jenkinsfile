@@ -1,21 +1,25 @@
+#!/usr/bin/env groovy
+
 pipeline {
-    agent none
+
+    agent {
+        docker {
+            image 'node'
+            args '-u root'
+        }
+    }
+
     stages {
-        stage('test1') {
-            agent {
-                docker { image 'ubuntu:latest' }
-            }
+        stage('Build') {
             steps {
-                sh 'echo hello'
+                echo 'Building...'
+                sh 'npm install'
             }
         }
-        stage('test2') {
-            agent {
-                docker { image 'hadolint/hadolint:latest-debian' }
-            }
+        stage('Test') {
             steps {
-                sh 'hadolint Dockerfile | tee -a hadolint_lint.txt'
-                sh'cat hadolint_lint.txt'
+                echo 'Testing...'
+                sh 'npm test'
             }
         }
     }
